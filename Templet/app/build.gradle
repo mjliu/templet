@@ -1,0 +1,79 @@
+apply plugin: 'com.android.application'
+apply plugin: 'walle'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.mjliu.templet"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a"
+        }
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    signingConfigs {
+        templet_key {
+            storeFile file('./key/templet')
+            storePassword "123456"
+            keyAlias "templet"
+            keyPassword "123456"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.templet_key
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources true    // 自动清理无用资源
+            buildConfigField "String", "API_HOST", "\"http://pipei.fuyoukache.com/\""//API Host
+        }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.templet_key
+            buildConfigField "String", "API_HOST", "\"http://pipei.fuyoukache.com/\""//API Host
+            buildConfigField "String", "API_MOKE_HOST", "\"https://www.easy-mock.com/\""//API Host
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation project(':CommonLib')
+
+    //walle 多渠道打包
+    implementation 'com.meituan.android.walle:library:1.1.6'
+}
+walle {
+    apkOutputFolder = new File("${project.buildDir}/outputs/channels")
+    apkFileNameFormat = 'templet${channel}_${versionName}.apk'
+    channelFile = new File("${project.getProjectDir()}/channel")
+}
