@@ -1,3 +1,6 @@
 include ':app'
 include ':CommonLib'
 project(':CommonLib').projectDir = new File('../libs/CommonLib')
+
+include ':CommonUI'
+project(':CommonUI').projectDir = new File('../libs/Commonui')

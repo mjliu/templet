@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../libs/Commonlib/CommonLib.iml" filepath="$PROJECT_DIR$/../libs/Commonlib/CommonLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../libs/Commonui/CommonUI.iml" filepath="$PROJECT_DIR$/../libs/Commonui/CommonUI.iml" />
       <module fileurl="file://$PROJECT_DIR$/Templet.iml" filepath="$PROJECT_DIR$/Templet.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
