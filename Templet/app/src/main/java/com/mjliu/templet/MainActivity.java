@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        UtilsLog.e(TAG, "main comin ......");
 
         RetrofitManager.getInstance().currentOrder(new BaseObserver<CurrentOrderEntity>() {
             @Override

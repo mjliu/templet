@@ -2,12 +2,8 @@ package com.mjliu.commonlib.retrofit;
 import android.text.TextUtils;
 
 import com.mjliu.commonlib.utils.UtilsLog;
-import com.orhanobut.logger.Logger;
-
 import org.json.JSONObject;
-
 import java.io.IOException;
-import java.lang.annotation.Target;
 import java.net.URLDecoder;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -75,7 +71,7 @@ public class CommonInterceptor implements Interceptor {
         printUrl(response.request());
         UtilsLog.e(TAG, "response code : " + response.code() + " || response msg : " + response.message());
         UtilsLog.e(TAG, "response result : " + result);
-//        eSub(TAG, "response result : " + result);
+        eSub(TAG, "response result : " + result);
     }
 
     private static void printHeaders(String tag, Headers headers) {

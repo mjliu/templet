@@ -9,7 +9,9 @@ import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiService {
     @FormUrlEncoded
@@ -17,8 +19,7 @@ public interface ApiService {
     Observable<BaseEntity> userLoc(@FieldMap Map<String, String> body);
 
 
-    @FormUrlEncoded
-    @POST("/order/currentOrder/")
-    Observable<CurrentOrderEntity> currentOrder(@Field("token") String token, @Field("apptest") String apptest);
+    @GET("/order/currentOrder/")
+    Observable<CurrentOrderEntity> currentOrder(@Query("token") String token, @Query("apptest") String apptest);
 
 }
