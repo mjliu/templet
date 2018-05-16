@@ -9,7 +9,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class RetrofitManager {
-    private  ApiService gpsService;
+    private  ApiService apiService;
 
     private RetrofitManager() {
         initService();
@@ -24,7 +24,7 @@ public class RetrofitManager {
     }
 
     private void initService() {
-        gpsService = createService(BuildConfig.API_HOST, ApiService.class);
+        apiService = createService(BuildConfig.API_HOST, ApiService.class);
     }
 
     private static <T> void toSubscribe(Observable<T> o, Observer<T> s) {
@@ -39,6 +39,10 @@ public class RetrofitManager {
     }
 
     public void userLoc(Params p, Observer s) {
-        toSubscribe(gpsService.userLoc(p), s);
+        toSubscribe(apiService.userLoc(p), s);
+    }
+
+    public void currentOrder(Observer s) {
+        toSubscribe(apiService.currentOrder("eef1d9e7ec6aab51e5ca7286e26dc9f5", "1"), s);
     }
 }

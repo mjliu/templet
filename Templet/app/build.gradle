@@ -43,7 +43,7 @@ android {
             //64k
             minifyEnabled false
             signingConfig signingConfigs.templet_key
-            buildConfigField "String", "API_HOST", "\"https://d3gps.fuyoukache.com/\""//API Host
+            buildConfigField "String", "API_HOST", "\"http://d3driver.fuyoukache.com//\""//API Host
         }
     }
 

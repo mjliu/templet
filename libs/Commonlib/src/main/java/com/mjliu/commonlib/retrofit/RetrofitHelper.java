@@ -10,6 +10,7 @@ public class RetrofitHelper {
 
     public static Retrofit getRetrofit(String url) {
         return new Retrofit.Builder()
+                .baseUrl(url)
                 .client(ClientHelper.getInstance().getClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
