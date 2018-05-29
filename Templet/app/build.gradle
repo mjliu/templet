@@ -23,7 +23,7 @@ android {
     }
     signingConfigs {
         templet_key {
-            storeFile file('./key/templet')
+            storeFile file('./key/templet.key')
             storePassword "123456"
             keyAlias "templet"
             keyPassword "123456"
@@ -80,6 +80,7 @@ dependencies {
     androidTestImplementation ('com.android.support.test.espresso:espresso-core:3.0.2') {
         exclude module: 'support-annotations'
     }
+    implementation 'com.android.support:multidex:1.0.3'
 
     implementation project(':CommonLib')
     //walle 多渠道打包

@@ -49,5 +49,8 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     //android util
-    api 'com.blankj:utilcode:1.15.0'
+    api 'com.blankj:utilcode:1.15.1'
+
+    //recyvlerview
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
 }

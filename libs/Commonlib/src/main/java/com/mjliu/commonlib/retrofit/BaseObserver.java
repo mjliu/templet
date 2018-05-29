@@ -14,8 +14,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
 public abstract class BaseObserver<T extends BaseEntity> extends Callback<T> implements Observer<T> {
-
-    private Dialog mProgressDialog;
+    private WeakReference<Dialog> weakDialog;
     private WeakReference<Activity> weakAct;
 
     public BaseObserver() {
@@ -28,14 +27,16 @@ public abstract class BaseObserver<T extends BaseEntity> extends Callback<T> imp
     public void showDialog() {
         if (weakAct == null || MyUtil.isDead(weakAct.get()))
             return;
-
-        this.mProgressDialog = DialogUtil.getProgressDialog(weakAct.get());
-        this.mProgressDialog.show();
+        weakDialog = new WeakReference<>(DialogUtil.getProgressDialog(weakAct.get()));
+        this.weakDialog.get().show();
     }
 
     private void dissmiss() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
+        if (weakDialog == null || weakDialog.get() == null)
+            return;
+
+        if (weakDialog.get().isShowing()) {
+            weakDialog.get().dismiss();
         }
     }
 
